@@ -1,48 +1,29 @@
-namespace BugSweeper.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-public class Theme
+namespace BugSweeper.Models
 {
-    public Color BackgroundColor { get; set; }
-    public Color TextColor { get; set; }
-    public string FontFamily { get; set; }
-
-    public Theme(Color bg, Color text, string font)
+    public class Theme
     {
-        BackgroundColor = bg;
-        TextColor = text;
-        FontFamily = font;
-    }
+        public string Name { get; }
+        private Color Background { get; }
+        private Color TextColor { get; }
+        private string FontFamily { get; }
 
-    public void Apply(ContentPage page)
-    {
-        page.BackgroundColor = BackgroundColor;
-
-        foreach (var element in GetAllChildren(page))
+        public Theme(string name, Color background, Color textColor, string fontFamily)
         {
-            if (element is Label label)
-            {
-                label.TextColor = TextColor;
-                label.FontFamily = FontFamily;
-            }
-            if (element is Button button)
-            {
-                button.TextColor = TextColor;
-                button.FontFamily = FontFamily;
-            }
+            Name = name;
+            Background = background;
+            TextColor = textColor;
+            FontFamily = fontFamily;
         }
-    }
 
-    private IEnumerable<View> GetAllChildren(Element parent)
-    {
-        if (parent is Layout layout)
+        public void Apply(Application app)
         {
-            foreach (var child in layout.Children)
-            {
-                yield return child;
-
-                foreach (var sub in GetAllChildren(child))
-                    yield return sub;
-            }
+            if (app == null) return;
+            app.Resources["AppBackground"] = Background;
+            app.Resources["AppText"] = TextColor;
+            app.Resources["AppFont"] = FontFamily;
         }
     }
 }

@@ -1,14 +1,17 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:BugSweeper"
-             x:Class="BugSweeper.App">
+             x:Class="MAUI_Bugsweeper.App">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <!-- Dynamic resources used by Theme.Apply -->
+            <Color x:Key="AppBackground">White</Color>
+            <Color x:Key="AppText">Black</Color>
+            <OnPlatform x:Key="AppFont" x:TypeArguments="x:String">
+                <On Platform="Android" Value="sans-serif" />
+                <On Platform="iOS" Value="Helvetica" />
+                <On Platform="WinUI" Value="Segoe UI" />
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

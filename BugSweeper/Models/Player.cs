@@ -1,18 +1,26 @@
-namespace Bugsweeper.Models;
-
-public class Player
+namespace BugSweeper.Models
 {
-    public string Name { get; set; }
-    public int Score { get; set; }
-
-    public Player(string name)
+    public class Player
     {
-        Name = name;
-        Score = 0;
-    }
+        public string Name { get; private set; }
+        public int Score { get; private set; }
+        public int GamesPlayed { get; private set; }
 
-    public void AddScore(int points)
-    {
-        Score += points;
+        public Player(string name)
+        {
+            Name = name;
+            Score = 0;
+            GamesPlayed = 0;
+        }
+
+        public void AddScore(int points)
+        {
+            Score += points;
+        }
+
+        public void AddGame()
+        {
+            GamesPlayed++;
+        }
     }
 }
